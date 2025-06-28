@@ -86,11 +86,10 @@ export class SimpleGeminiService {
 
       console.log(`🤖 [SIMPLE GEMINI] Processing: "${userMessage}"`);
 
-      // كتابة لوج مفصل لملف
+      // كتابة لوج مفصل للكونسول فقط (لا يمكن استخدام fs في البراوزر)
       try {
-        const fs = await import('fs');
-        const logEntry = `\n${new Date().toISOString()} - Processing message: "${userMessage}" for conversation: ${conversationId}\n`;
-        fs.appendFileSync('gemini-debug.log', logEntry);
+        const logEntry = `${new Date().toISOString()} - Processing message: "${userMessage}" for conversation: ${conversationId}`;
+        console.log('📝 [DEBUG LOG]', logEntry);
       } catch (err) {
         console.error('Error writing to debug log:', err);
       }
@@ -110,19 +109,17 @@ export class SimpleGeminiService {
       if (!settings || !settings.is_enabled) {
         console.log('❌ Gemini AI is not enabled for this conversation');
 
-        // كتابة لوج
+        // كتابة لوج للكونسول
         try {
-          const fs = await import('fs');
-          fs.appendFileSync('gemini-debug.log', `${new Date().toISOString()} - Gemini disabled or no settings for conversation: ${conversationId}\n`);
+          console.log('📝 [DEBUG LOG]', `${new Date().toISOString()} - Gemini disabled or no settings for conversation: ${conversationId}`);
         } catch (err) {}
 
         return false;
       }
 
-      // كتابة لوج
+      // كتابة لوج للكونسول
       try {
-        const fs = await import('fs');
-        fs.appendFileSync('gemini-debug.log', `${new Date().toISOString()} - Gemini settings loaded successfully\n`);
+        console.log('📝 [DEBUG LOG]', `${new Date().toISOString()} - Gemini settings loaded successfully`);
       } catch (err) {}
 
       // إنتاج الرد الذكي
@@ -132,10 +129,9 @@ export class SimpleGeminiService {
       if (!response) {
         console.log('❌ Failed to generate response');
 
-        // كتابة لوج مفصل
+        // كتابة لوج مفصل للكونسول
         try {
-          const fs = await import('fs');
-          fs.appendFileSync('gemini-debug.log', `${new Date().toISOString()} - FAILED to generate response for: "${userMessage}"\n`);
+          console.log('📝 [DEBUG LOG]', `${new Date().toISOString()} - FAILED to generate response for: "${userMessage}"`);
         } catch (err) {}
 
         return false;
@@ -165,11 +161,10 @@ export class SimpleGeminiService {
     } catch (error) {
       console.error('❌ [SIMPLE GEMINI] Error in processMessageInternal:', error);
 
-      // كتابة لوج مفصل للخطأ
+      // كتابة لوج مفصل للخطأ في الكونسول
       try {
-        const fs = await import('fs');
-        fs.appendFileSync('gemini-debug.log', `${new Date().toISOString()} - ERROR in processMessageInternal: ${error.message}\n`);
-        fs.appendFileSync('gemini-debug.log', `${new Date().toISOString()} - ERROR stack: ${error.stack}\n`);
+        console.log('📝 [DEBUG LOG]', `${new Date().toISOString()} - ERROR in processMessageInternal: ${error.message}`);
+        console.log('📝 [DEBUG LOG]', `${new Date().toISOString()} - ERROR stack: ${error.stack}`);
       } catch (err) {}
 
       return false;
@@ -233,11 +228,10 @@ export class SimpleGeminiService {
     } catch (error) {
       console.error('❌ Error generating smart response:', error);
 
-      // كتابة لوج مفصل للخطأ
+      // كتابة لوج مفصل للخطأ في الكونسول
       try {
-        const fs = await import('fs');
-        fs.appendFileSync('gemini-debug.log', `${new Date().toISOString()} - ERROR in generateSmartResponse: ${error.message}\n`);
-        fs.appendFileSync('gemini-debug.log', `${new Date().toISOString()} - ERROR stack: ${error.stack}\n`);
+        console.log('📝 [DEBUG LOG]', `${new Date().toISOString()} - ERROR in generateSmartResponse: ${error.message}`);
+        console.log('📝 [DEBUG LOG]', `${new Date().toISOString()} - ERROR stack: ${error.stack}`);
       } catch (err) {}
 
       return null;
