@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار React</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h1 { color: #4ade80; }
+        .test { margin: 15px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #065f46; color: #10b981; }
+        .error { background: #7f1d1d; color: #f87171; }
+        .info { background: #1e3a8a; color: #60a5fa; }
+        .warning { background: #92400e; color: #fbbf24; }
+        pre { background: #000; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 12px; }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 اختبار React التطبيق</h1>
+        
+        <div id="basic-tests"></div>
+        
+        <h2>📄 محتوى الصفحة الرئيسية:</h2>
+        <div id="html-content"></div>
+        
+        <h2>🔧 اختبارات متقدمة:</h2>
+        <button class="btn" onclick="testReactApp()">اختبار React App</button>
+        <button class="btn" onclick="testAssets()">اختبار الملفات</button>
+        <button class="btn" onclick="testConsoleErrors()">فحص الأخطاء</button>
+        
+        <div id="advanced-tests"></div>
+        
+        <h2>📋 سجل الأخطاء:</h2>
+        <div id="error-log"></div>
+    </div>
+
+    <script>
+        const basicTests = document.getElementById('basic-tests');
+        const htmlContent = document.getElementById('html-content');
+        const advancedTests = document.getElementById('advanced-tests');
+        const errorLog = document.getElementById('error-log');
+        
+        let errors = [];
+
+        // تسجيل الأخطاء
+        window.addEventListener('error', (e) => {
+            errors.push(`❌ JavaScript Error: ${e.message} في ${e.filename}:${e.lineno}`);
+            updateErrorLog();
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            errors.push(`❌ Promise Rejected: ${e.reason}`);
+            updateErrorLog();
+        });
+
+        function updateErrorLog() {
+            errorLog.innerHTML = errors.length > 0 
+                ? errors.map(err => `<div class="error">${err}</div>`).join('')
+                : '<div class="success">✅ لا توجد أخطاء</div>';
+        }
+
+        // اختبارات أساسية
+        function runBasicTests() {
+            let results = [];
+            
+            // اختبار JavaScript
+            try {
+                const test = () => 'working';
+                results.push('<div class="success">✅ JavaScript يعمل</div>');
+            } catch(e) {
+                results.push(`<div class="error">❌ JavaScript معطل: ${e.message}</div>`);
+            }
+
+            // اختبار Console
+            try {
+                console.log('🔍 اختبار Console');
+                results.push('<div class="success">✅ Console يعمل</div>');
+            } catch(e) {
+                results.push(`<div class="error">❌ Console معطل: ${e.message}</div>`);
+            }
+
+            // اختبار Fetch
+            if (typeof fetch !== 'undefined') {
+                results.push('<div class="success">✅ Fetch API متوفر</div>');
+            } else {
+                results.push('<div class="error">❌ Fetch API غير متوفر</div>');
+            }
+
+            // اختبار Local Storage
+            try {
+                localStorage.setItem('test', 'working');
+                localStorage.removeItem('test');
+                results.push('<div class="success">✅ Local Storage يعمل</div>');
+            } catch(e) {
+                results.push(`<div class="error">❌ Local Storage معطل: ${e.message}</div>`);
+            }
+
+            basicTests.innerHTML = results.join('');
+        }
+
+        // اختبار React App
+        function testReactApp() {
+            advancedTests.innerHTML = '<div class="info">🔄 جاري اختبار React App...</div>';
+            
+            fetch('/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    let results = [];
+                    
+                    // فحص HTML
+                    if (html.includes('<div id="root">')) {
+                        results.push('<div class="success">✅ عنصر root موجود</div>');
+                    } else {
+                        results.push('<div class="error">❌ عنصر root مفقود</div>');
+                    }
+                    
+                    if (html.includes('main.tsx')) {
+                        results.push('<div class="success">✅ ملف main.tsx مرتبط</div>');
+                    } else {
+                        results.push('<div class="error">❌ ملف main.tsx غير مرتبط</div>');
+                    }
+                    
+                    if (html.includes('type="module"')) {
+                        results.push('<div class="success">✅ ES Modules مفعل</div>');
+                    } else {
+                        results.push('<div class="warning">⚠️ ES Modules قد يكون معطل</div>');
+                    }
+
+                    // عرض جزء من HTML
+                    const htmlPreview = html.substring(0, 1000) + (html.length > 1000 ? '...' : '');
+                    htmlContent.innerHTML = `<pre>${htmlPreview}</pre>`;
+                    
+                    advancedTests.innerHTML = results.join('');
+                })
+                .catch(error => {
+                    advancedTests.innerHTML = `<div class="error">❌ فشل في الوصول للصفحة الرئيسية: ${error.message}</div>`;
+                });
+        }
+
+        // اختبار الملفات
+        function testAssets() {
+            advancedTests.innerHTML = '<div class="info">🔄 جاري اختبار الملفات...</div>';
+            
+            const filesToTest = [
+                '/src/main.tsx',
+                '/src/App.tsx',
+                '/src/output.css',
+                '/favicon.ico'
+            ];
+            
+            Promise.all(filesToTest.map(file => 
+                fetch(file)
+                    .then(response => ({ file, status: response.status, ok: response.ok }))
+                    .catch(error => ({ file, status: 'error', error: error.message }))
+            )).then(results => {
+                const resultHtml = results.map(result => {
+                    if (result.ok) {
+                        return `<div class="success">✅ ${result.file} - متاح</div>`;
+                    } else if (result.status === 'error') {
+                        return `<div class="error">❌ ${result.file} - خطأ: ${result.error}</div>`;
+                    } else {
+                        return `<div class="error">❌ ${result.file} - HTTP ${result.status}</div>`;
+                    }
+                }).join('');
+                
+                advancedTests.innerHTML = resultHtml;
+            });
+        }
+
+        // فحص أخطاء Console
+        function testConsoleErrors() {
+            advancedTests.innerHTML = '<div class="info">🔄 جاري فحص أخطاء Console...</div>';
+            
+            // محاولة تحميل React
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = '/src/main.tsx';
+            script.onload = () => {
+                setTimeout(() => {
+                    advancedTests.innerHTML = '<div class="success">✅ تم تحميل main.tsx بنجاح</div>';
+                }, 2000);
+            };
+            script.onerror = (e) => {
+                advancedTests.innerHTML = `<div class="error">❌ فشل في تحميل main.tsx: ${e.message || 'خطأ غير معروف'}</div>`;
+            };
+            
+            document.head.appendChild(script);
+        }
+
+        // تشغيل الاختبارات الأساسية عند التحميل
+        runBasicTests();
+        updateErrorLog();
+        
+        // معلومات النظام
+        console.log('🔍 معلومات النظام:');
+        console.log('📍 URL:', window.location.href);
+        console.log('🌐 Origin:', window.location.origin);
+        console.log('📱 User Agent:', navigator.userAgent);
+    </script>
+</body>
+</html>
