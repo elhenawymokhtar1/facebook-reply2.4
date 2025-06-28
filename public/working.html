@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>✅ يعمل!</title>
+    <style>
+        body {
+            background: #22c55e;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0;
+        }
+        p {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉</h1>
+        <p><strong>التطبيق يعمل!</strong></p>
+        <p>تم حل مشكلة الصفحة البيضاء</p>
+        <p id="time"></p>
+    </div>
+    <script>
+        document.getElementById('time').textContent = new Date().toLocaleString('ar-EG');
+        console.log('✅ الصفحة تعمل بنجاح!');
+    </script>
+</body>
+</html>
