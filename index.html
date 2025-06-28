@@ -3,183 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Facebook Reply System - يعمل بنجاح!</title>
+    <title>نظام الرد الآلي على فيسبوك</title>
+    <meta name="description" content="نظام ذكي للرد الآلي على رسائل فيسبوك باستخدام Gemini AI" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: 'Cairo', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 20px;
-      }
-      .container {
-        background: rgba(255,255,255,0.1);
-        padding: 40px;
-        border-radius: 20px;
-        backdrop-filter: blur(10px);
-        max-width: 600px;
-        width: 100%;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      }
-      .title {
-        font-size: 3em;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      }
-      .success-box {
-        background: rgba(34, 197, 94, 0.3);
-        padding: 15px;
-        border-radius: 10px;
-        margin: 20px 0;
-        border: 2px solid #22c55e;
-        animation: pulse 2s infinite;
-      }
-      .info-box {
-        background: rgba(59, 130, 246, 0.3);
-        padding: 15px;
-        border-radius: 10px;
-        margin: 20px 0;
-        border: 2px solid #3b82f6;
-      }
-      .btn {
-        background: rgba(255,255,255,0.2);
-        color: white;
-        border: 2px solid rgba(255,255,255,0.3);
-        padding: 15px 30px;
-        border-radius: 10px;
-        font-size: 1.1em;
-        cursor: pointer;
-        margin: 10px;
-        font-family: 'Cairo', sans-serif;
-        transition: all 0.3s ease;
-      }
-      .btn:hover {
-        background: rgba(255,255,255,0.3);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
-      @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-      }
-      .status-indicator {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        background: #22c55e;
-        border-radius: 50%;
-        margin-left: 8px;
-        animation: blink 1s infinite;
-      }
-      @keyframes blink {
-        0%, 50% { opacity: 1; }
-        51%, 100% { opacity: 0.3; }
-      }
-    </style>
   </head>
-  <body>
-    <div class="container">
-      <h1 class="title">🎉 التطبيق يعمل!</h1>
-      
-      <div class="success-box">
-        ✅ تم حل مشكلة الصفحة البيضاء نهائياً
-        <span class="status-indicator"></span>
-      </div>
-      
-      <div class="info-box">
-        🚀 التطبيق جاهز للاستخدام بدون مشاكل
-      </div>
-      
-      <div class="info-box">
-        📅 التاريخ: <span id="current-date"></span><br>
-        ⏰ الوقت: <span id="current-time"></span><br>
-        🌐 المنصة: Vercel
-      </div>
-      
-      <button class="btn" onclick="testApp()">
-        🧪 اختبار التفاعل
-      </button>
-      
-      <button class="btn" onclick="showInfo()">
-        ℹ️ معلومات التطبيق
-      </button>
-      
-      <button class="btn" onclick="checkStatus()">
-        🔍 فحص الحالة
-      </button>
-    </div>
 
-    <script>
-      // تحديث التاريخ والوقت
-      function updateDateTime() {
-        const now = new Date();
-        document.getElementById('current-date').textContent = now.toLocaleDateString('ar-EG');
-        document.getElementById('current-time').textContent = now.toLocaleTimeString('ar-EG');
-      }
-      
-      // اختبار التطبيق
-      function testApp() {
-        alert('🎉 التطبيق يعمل بنجاح!\n\n✅ HTML يعمل\n✅ CSS يعمل\n✅ JavaScript يعمل\n✅ Vercel يعمل\n✅ الخطوط تعمل\n✅ الرسوم المتحركة تعمل');
-      }
-      
-      // معلومات التطبيق
-      function showInfo() {
-        const info = `📋 معلومات التطبيق:
-        
-🌐 Platform: Vercel
-💻 Technology: HTML + CSS + JS
-🎯 Status: Working Perfectly
-🔧 Version: 2.0
-📱 Responsive: Yes
-🎨 Animations: Enabled
-⚡ Performance: Optimized`;
-        
-        alert(info);
-      }
-      
-      // فحص الحالة
-      function checkStatus() {
-        const checks = [
-          '✅ HTML محمل',
-          '✅ CSS مطبق',
-          '✅ JavaScript يعمل',
-          '✅ الخطوط محملة',
-          '✅ الرسوم المتحركة تعمل',
-          '✅ التفاعل يعمل',
-          '✅ Vercel متصل',
-          '✅ لا توجد أخطاء'
-        ];
-        
-        alert('🔍 فحص شامل للنظام:\n\n' + checks.join('\n'));
-      }
-      
-      // تشغيل التحديث عند تحميل الصفحة
-      updateDateTime();
-      setInterval(updateDateTime, 1000);
-      
-      // رسائل Console
-      console.log('🎉 التطبيق محمل بنجاح!');
-      console.log('✅ لا توجد أخطاء');
-      console.log('🚀 جاهز للاستخدام');
-      console.log('📊 جميع الفحوصات نجحت');
-      
-      // إشعار بالنجاح
-      setTimeout(() => {
-        console.log('🔔 التطبيق يعمل بشكل مثالي منذ ' + new Date().toLocaleTimeString('ar-EG'));
-      }, 2000);
-    </script>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
