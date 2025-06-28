@@ -16,7 +16,7 @@ import Conversations from "./pages/Conversations";
 import WhatsAppConversations from "./pages/WhatsAppConversations";
 
 import Orders from "./pages/Orders";
-import TestDiagnosis from "./pages/TestDiagnosis";
+// import TestDiagnosis from "./pages/TestDiagnosis";
 
 import SimpleTestChat from "./pages/SimpleTestChat";
 import WhatsAppBaileys from "./pages/WhatsAppBaileys";
@@ -236,7 +236,7 @@ const App = () => {
             {/* E-commerce Routes */}
             <Route path="/store-dashboard" element={<PrivateRoute><AuthenticatedLayout><StoreDashboard /></AuthenticatedLayout></PrivateRoute>} />
             <Route path="/orders" element={<PrivateRoute><AuthenticatedLayout><OrdersManagement /></AuthenticatedLayout></PrivateRoute>} />
-            <Route path="/test-diagnosis" element={<PrivateRoute><AuthenticatedLayout><TestDiagnosis /></AuthenticatedLayout></PrivateRoute>} />
+            {/* <Route path="/test-diagnosis" element={<PrivateRoute><AuthenticatedLayout><TestDiagnosis /></AuthenticatedLayout></PrivateRoute>} /> */}
             <Route path="/simple-test-chat" element={<PrivateRoute><AuthenticatedLayout><SimpleTestChat /></AuthenticatedLayout></PrivateRoute>} />
             <Route path="/quick-start-guide" element={<PrivateRoute><AuthenticatedLayout><QuickStartGuide /></AuthenticatedLayout></PrivateRoute>} />
             <Route path="/categories" element={<PrivateRoute><AuthenticatedLayout><Categories /></AuthenticatedLayout></PrivateRoute>} />

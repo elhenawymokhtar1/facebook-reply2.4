@@ -1,13 +1,28 @@
+# ملفات يجب تجاهلها في Vercel
 node_modules
 .git
-src
-dist
-*.tsx
-*.ts
-*.json
-!vercel.json
-!package.json
-vite.config.ts
-tsconfig.json
 .env*
 README.md
+
+# ملفات التطوير والاختبار
+*.log
+*.test.ts
+*.test.tsx
+test-*.js
+test-*.mjs
+debug-*.js
+fix-*.js
+fix-*.cjs
+monitor-*.cjs
+setup-*.mjs
+apply-*.cjs
+backup-*.sh
+preventive-*.js
+
+# ملفات مؤقتة
+tmp/
+temp/
+uploads/
+baileys_auth/
+*.pid
+*.seed
