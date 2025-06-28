@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 نظام الرد الآلي على فيسبوك - جاهز!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .feature-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 200px;
+        }
+        
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-color: #4CAF50;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            border-color: #2196F3;
+        }
+        
+        .status-bar {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #4CAF50;
+            border-radius: 50%;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 نظام الرد الآلي على فيسبوك</h1>
+            <p>نظام ذكي ومتطور للرد التلقائي على رسائل فيسبوك باستخدام الذكاء الاصطناعي</p>
+        </div>
+        
+        <div class="status-bar">
+            <strong>✅ النظام يعمل بنجاح</strong>
+            <span class="status-indicator"></span>
+            <br>
+            <small>آخر تحديث: <span id="current-time"></span></small>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🤖 ذكاء اصطناعي متقدم</h3>
+                <p>يستخدم Gemini AI لفهم الرسائل والرد عليها بذكاء وطبيعية، مع إمكانية التعلم من المحادثات السابقة</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📱 دعم متعدد المنصات</h3>
+                <p>يدعم Facebook Messenger و WhatsApp مع إمكانية إضافة منصات أخرى في المستقبل</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🏢 إدارة الشركات</h3>
+                <p>نظام متكامل لإدارة عدة شركات مع عزل البيانات وخطط اشتراك مرنة</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🛍️ التجارة الإلكترونية</h3>
+                <p>متجر إلكتروني متكامل مع إدارة المنتجات والطلبات والمدفوعات</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📊 تحليلات متقدمة</h3>
+                <p>تقارير شاملة عن الأداء والمحادثات والمبيعات مع رسوم بيانية تفاعلية</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🔒 أمان عالي</h3>
+                <p>حماية متقدمة للبيانات مع تشفير شامل وعزل كامل بين الشركات</p>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>🎯 ابدأ الآن واستمتع بالرد التلقائي الذكي!</h2>
+            <div class="btn-group">
+                <a href="/company-register" class="btn btn-primary">🏢 تسجيل شركة جديدة</a>
+                <a href="/company-login" class="btn btn-secondary">🔑 تسجيل الدخول</a>
+                <a href="/subscription-plans" class="btn">💎 خطط الاشتراك</a>
+                <a href="/super-admin-login" class="btn">👑 لوحة الإدارة</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 نظام الرد الآلي على فيسبوك - جميع الحقوق محفوظة</p>
+            <p>مطور بواسطة فريق متخصص في الذكاء الاصطناعي</p>
+        </div>
+    </div>
+    
+    <script>
+        // تحديث الوقت
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleString('ar-EG');
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        // رسائل console
+        console.log('🚀 نظام الرد الآلي على فيسبوك محمل بنجاح!');
+        console.log('✅ جميع المكونات تعمل بشكل طبيعي');
+        console.log('🎯 جاهز للاستخدام');
+        
+        // تأثيرات تفاعلية
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>
