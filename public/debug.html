@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 تشخيص التطبيق</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h1 { color: #4ade80; }
+        .test { margin: 15px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #065f46; color: #10b981; }
+        .error { background: #7f1d1d; color: #f87171; }
+        .info { background: #1e3a8a; color: #60a5fa; }
+        pre { background: #000; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 تشخيص التطبيق</h1>
+        <div id="results"></div>
+        
+        <h2>📋 معلومات النظام:</h2>
+        <div id="system-info"></div>
+        
+        <h2>🌐 اختبار الشبكة:</h2>
+        <div id="network-tests"></div>
+        
+        <h2>📄 اختبار الملفات:</h2>
+        <div id="file-tests"></div>
+    </div>
+
+    <script>
+        const results = document.getElementById('results');
+        const systemInfo = document.getElementById('system-info');
+        const networkTests = document.getElementById('network-tests');
+        const fileTests = document.getElementById('file-tests');
+
+        // معلومات النظام
+        systemInfo.innerHTML = `
+            <div class="info">🌐 User Agent: ${navigator.userAgent}</div>
+            <div class="info">📍 URL: ${window.location.href}</div>
+            <div class="info">🔗 Origin: ${window.location.origin}</div>
+            <div class="info">📅 التاريخ: ${new Date().toLocaleString('ar-EG')}</div>
+        `;
+
+        // اختبار JavaScript الأساسي
+        try {
+            const test = () => 'test';
+            results.innerHTML += '<div class="test success">✅ JavaScript يعمل بشكل صحيح</div>';
+        } catch(e) {
+            results.innerHTML += `<div class="test error">❌ خطأ في JavaScript: ${e.message}</div>`;
+        }
+
+        // اختبار Console
+        try {
+            console.log('🔍 اختبار Console');
+            results.innerHTML += '<div class="test success">✅ Console يعمل</div>';
+        } catch(e) {
+            results.innerHTML += `<div class="test error">❌ مشكلة في Console: ${e.message}</div>`;
+        }
+
+        // اختبار Local Storage
+        try {
+            localStorage.setItem('debug-test', 'working');
+            const value = localStorage.getItem('debug-test');
+            localStorage.removeItem('debug-test');
+            if (value === 'working') {
+                results.innerHTML += '<div class="test success">✅ Local Storage يعمل</div>';
+            } else {
+                results.innerHTML += '<div class="test error">❌ Local Storage لا يحفظ البيانات</div>';
+            }
+        } catch(e) {
+            results.innerHTML += `<div class="test error">❌ Local Storage معطل: ${e.message}</div>`;
+        }
+
+        // اختبار Fetch API
+        if (typeof fetch !== 'undefined') {
+            results.innerHTML += '<div class="test success">✅ Fetch API متوفر</div>';
+            
+            // اختبار الوصول للصفحة الرئيسية
+            fetch('/')
+                .then(response => {
+                    if (response.ok) {
+                        networkTests.innerHTML += '<div class="test success">✅ الصفحة الرئيسية متاحة</div>';
+                        return response.text();
+                    } else {
+                        networkTests.innerHTML += `<div class="test error">❌ خطأ HTTP: ${response.status}</div>`;
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                })
+                .then(html => {
+                    if (html.includes('<div id="root">')) {
+                        networkTests.innerHTML += '<div class="test success">✅ عنصر root موجود في HTML</div>';
+                    } else {
+                        networkTests.innerHTML += '<div class="test error">❌ عنصر root مفقود من HTML</div>';
+                    }
+                    
+                    if (html.includes('main.tsx')) {
+                        networkTests.innerHTML += '<div class="test success">✅ ملف main.tsx مرتبط</div>';
+                    } else {
+                        networkTests.innerHTML += '<div class="test error">❌ ملف main.tsx غير مرتبط</div>';
+                    }
+                })
+                .catch(error => {
+                    networkTests.innerHTML += `<div class="test error">❌ فشل في الوصول للصفحة الرئيسية: ${error.message}</div>`;
+                });
+
+            // اختبار ملف main.tsx
+            fetch('/src/main.tsx')
+                .then(response => {
+                    if (response.ok) {
+                        fileTests.innerHTML += '<div class="test success">✅ ملف main.tsx متاح</div>';
+                    } else {
+                        fileTests.innerHTML += `<div class="test error">❌ ملف main.tsx غير متاح: ${response.status}</div>`;
+                    }
+                })
+                .catch(error => {
+                    fileTests.innerHTML += `<div class="test error">❌ خطأ في الوصول لملف main.tsx: ${error.message}</div>`;
+                });
+
+        } else {
+            results.innerHTML += '<div class="test error">❌ Fetch API غير متوفر</div>';
+        }
+
+        // اختبار الأخطاء في Console
+        window.addEventListener('error', (e) => {
+            results.innerHTML += `<div class="test error">❌ خطأ JavaScript: ${e.message} في ${e.filename}:${e.lineno}</div>`;
+        });
+
+        // اختبار الأخطاء في الموارد
+        window.addEventListener('unhandledrejection', (e) => {
+            results.innerHTML += `<div class="test error">❌ Promise مرفوض: ${e.reason}</div>`;
+        });
+    </script>
+</body>
+</html>
