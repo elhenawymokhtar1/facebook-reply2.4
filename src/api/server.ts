@@ -2320,10 +2320,12 @@ app.get('/webhook', (req, res) => {
 app.post('/webhook', async (req, res) => {
   const body = req.body;
 
-  // إضافة log مباشر إلى ملف
-  import('fs').then(fs => {
-    fs.appendFileSync('webhook-debug.log', `\n${new Date().toISOString()} - WEBHOOK RECEIVED: ${JSON.stringify(body)}\n`);
-  }).catch(err => console.error('Error writing to debug log:', err));
+  // إضافة log للكونسول فقط (لا يمكن استخدام fs في البراوزر)
+  try {
+    console.log('📝 [WEBHOOK DEBUG]', `${new Date().toISOString()} - WEBHOOK RECEIVED: ${JSON.stringify(body)}`);
+  } catch (err) {
+    console.error('Error writing to debug log:', err);
+  }
 
   console.log('🔥🔥🔥 FACEBOOK WEBHOOK RECEIVED! 🔥🔥🔥');
   console.log('📨 Received Facebook webhook:', JSON.stringify(body, null, 2));
